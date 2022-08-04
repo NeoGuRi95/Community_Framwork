@@ -89,6 +89,7 @@ public class ArticleRepository {
                 .append("SELECT *")
                 .append("FROM article")
                 .append("WHERE id < ?", id)
+                .append("AND isBlind = 0")
                 .append("ORDER BY id DESC")
                 .append("LIMIT 1");
 
@@ -101,6 +102,7 @@ public class ArticleRepository {
                 .append("SELECT *")
                 .append("FROM article")
                 .append("WHERE id > ?", id)
+                .append("AND isBlind = 0")
                 .append("ORDER BY id ASC")
                 .append("LIMIT 1");
         return sql.selectRow(ArticleDto.class);
