@@ -143,4 +143,22 @@ public class ArticleServiceTest {
 
         assertThat(articleCount).isEqualTo(TEST_DATA_SIZE - 1);
     }
+
+    @Test
+    public void getBeforeArticle() {
+        ArticleDto articleDto = articleService.getBeforeArticle(5);
+
+        long beforeId = articleDto.getId();
+
+        assertThat(beforeId).isEqualTo(4);
+    }
+
+    @Test
+    public void getAfterArticle() {
+        ArticleDto articleDto = articleService.getAfterArticle(5);
+
+        long AfterId = articleDto.getId();
+
+        assertThat(AfterId).isEqualTo(6);
+    }
 }
