@@ -36,11 +36,16 @@ public class ArticleService {
         articleRepository.delete(id);
     }
 
-    public ArticleDto getBeforeArticle(int id) {
-        return articleRepository.getBeforeId(id);
+    public ArticleDto getPrevArticle(ArticleDto articleDto) {
+        long id = articleDto.getId();
+        return articleRepository.getPrevArticle(id);
     }
 
-    public ArticleDto getAfterArticle(int id) {
-        return articleRepository.getAfterId(id);
+    public ArticleDto getPrevArticle(long id) {
+        return articleRepository.getPrevArticle(id);
+    }
+
+    public ArticleDto getNextArticle(long id) {
+        return articleRepository.getNextArticle(id);
     }
 }

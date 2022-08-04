@@ -31,6 +31,16 @@ public class ArticleRepository {
         return sql.selectRow(ArticleDto.class);
     }
 
+    public long getLastId() {
+        SecSql sql = myMap.genSecSql();
+        sql
+                .append("SELECT id")
+                .append("FROM article")
+                .append("ORDER BY id DESC")
+                .append("LIMIT 1");
+        return sql.selectLong();
+    }
+
     public long getArticlesCount() {
         SecSql sql = myMap.genSecSql();
         sql
@@ -73,21 +83,26 @@ public class ArticleRepository {
         sql.delete();
     }
 
-    public ArticleDto getBeforeId(int id) {
+    public ArticleDto getPrevArticle(long id) {
         SecSql sql = myMap.genSecSql();
         sql
                 .append("SELECT *")
                 .append("FROM article")
-                .append("WHERE id = ?", id - 1);
+                .append("WHERE id < ?", id)
+                .append("ORDER BY id DESC")
+                .append("LIMIT 1");
+
         return sql.selectRow(ArticleDto.class);
     }
 
-    public ArticleDto getAfterId(int id) {
+    public ArticleDto getNextArticle(long id) {
         SecSql sql = myMap.genSecSql();
         sql
                 .append("SELECT *")
                 .append("FROM article")
-                .append("WHERE id = ?", id + 1);
+                .append("WHERE id > ?", id)
+                .append("ORDER BY id ASC")
+                .append("LIMIT 1");
         return sql.selectRow(ArticleDto.class);
     }
 }

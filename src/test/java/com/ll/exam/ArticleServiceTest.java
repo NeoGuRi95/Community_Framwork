@@ -4,10 +4,7 @@ import com.ll.exam.article.dto.ArticleDto;
 import com.ll.exam.article.service.ArticleService;
 import com.ll.exam.mymap.MyMap;
 import com.ll.exam.util.Ut;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.*;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
@@ -144,21 +141,40 @@ public class ArticleServiceTest {
         assertThat(articleCount).isEqualTo(TEST_DATA_SIZE - 1);
     }
 
+
     @Test
-    public void getBeforeArticle() {
-        ArticleDto articleDto = articleService.getBeforeArticle(5);
+    public void _2번글의_이전글은_1번글_이다() {
+        ArticleDto id2ArticleDto = articleService.getArticleById(2);
+        ArticleDto id1ArticleDto = articleService.getPrevArticle(id2ArticleDto);
 
-        long beforeId = articleDto.getId();
-
-        assertThat(beforeId).isEqualTo(4);
+        assertThat(id1ArticleDto.getId()).isEqualTo(1);
     }
 
     @Test
-    public void getAfterArticle() {
-        ArticleDto articleDto = articleService.getAfterArticle(5);
+    public void _1번글의_이전글은_없다() {
+        ArticleDto id1ArticleDto = articleService.getArticleById(1);
+        ArticleDto nullArticleDto = articleService.getPrevArticle(id1ArticleDto);
 
-        long AfterId = articleDto.getId();
+        assertThat(nullArticleDto).isNull();
+    }
 
-        assertThat(AfterId).isEqualTo(6);
+    @Test
+    public void _2번글의_다음글은_3번글_이다() {
+        ArticleDto id3ArticleDto = articleService.getNextArticle(2);
+
+        assertThat(id3ArticleDto.getId()).isEqualTo(3);
+    }
+
+    @Test
+    public void 마지막글의_다음글은_없다() {
+        long lastArticleId = TEST_DATA_SIZE;
+        ArticleDto nullArticleDto = articleService.getNextArticle(lastArticleId);
+
+        assertThat(nullArticleDto).isNull();
+    }
+
+    @Test
+    public void _11번글부터_20번글까지_블라인드처리() {
+
     }
 }
