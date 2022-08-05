@@ -45,7 +45,9 @@ public class ArticleController {
 
         ArticleDto prevArticleDto = articleService.getPrevArticle(articleDto.getId());
         ArticleDto nextArticleDto = articleService.getNextArticle(articleDto.getId());
+        List<ArticleDto> articleDtos = articleService.getArticles();
 
+        rq.setAttr("articles", articleDtos);
         rq.setAttr("prevArticle", prevArticleDto);
         rq.setAttr("nextArticle", nextArticleDto);
         rq.setAttr("article", articleDto);
