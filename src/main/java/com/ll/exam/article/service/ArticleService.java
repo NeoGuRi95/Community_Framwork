@@ -36,7 +36,7 @@ public class ArticleService {
         articleRepository.modify(id, title, body, b);
     }
 
-    public void delete(int id) {
+    public void delete(long id) {
         articleRepository.delete(id);
     }
 
