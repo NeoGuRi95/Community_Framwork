@@ -115,7 +115,7 @@
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <version>2.2</version>
                 <configuration>
-                    <url>https://site1.ll1.oa.gg/manager/text</url>
+                    <url>https://site1.ll1.wogus.net/manager/text</url>
                     <server>ll1__manager_text</server>
                     <path>/</path>
                 </configuration>

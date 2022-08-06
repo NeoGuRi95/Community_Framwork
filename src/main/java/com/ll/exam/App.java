@@ -20,8 +20,8 @@ public class App {
         if (isProd) {
             DB_HOST = "172.17.0.1";
             DB_PORT = 3306;
-            DB_ID = "jea";
-            DB_PASSWORD = "0000";
+            DB_ID = "jealocal";
+            DB_PASSWORD = "1234";
             DB_NAME = "site1";
         }
     }
